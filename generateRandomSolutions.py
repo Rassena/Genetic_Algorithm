@@ -29,7 +29,7 @@ def generate_random_solutions(amount_of_machines: int, grid_height: int, grid_wi
     while solution_number < amount_of_solutions:
         solution = []
         for machine_number in range(amount_of_machines):
-            solution.append((random.randint(0, grid_width), random.randint(0, grid_height)))
+            solution.append((random.randint(0, grid_width-1), random.randint(0, grid_height-1)))
         if is_correct_solution(solution):
             solutions.append(solution)
             solution_number += 1

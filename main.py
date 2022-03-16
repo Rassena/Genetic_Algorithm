@@ -11,10 +11,9 @@ if __name__ == '__main__':
     easy_problem = [EASY_COST_PATH, EASY_FLOW_PATH, 9, 3, 3, 100, 10]
     flat_problem = [FLAT_COST_PATH, FLAT_FLOW_PATH, 12, 1, 12, 100, 10]
     hard_problem = [HARD_COST_PATH, HARD_FLOW_PATH, 24, 5, 6, 100, 10]
+    tournament_size = 4
 
     problems = [easy_problem, flat_problem, hard_problem]
-
-    tournament_size = 4
 
     for problem in problems:
         number_of_machines = problem[2]
@@ -59,3 +58,4 @@ if __name__ == '__main__':
         print(mutation_solution)
         print(mutation_scores)
         print("\t===========================\n")
+
