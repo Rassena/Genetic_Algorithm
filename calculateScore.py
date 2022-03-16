@@ -32,16 +32,15 @@ def get_best_solutions(solutions: [], scores: [], amount: int = 1) -> [([int], f
     """
     best_solutions = []
 
-    for _ in range(amount):
-        best_score = max(scores)
-        best_number = 0
-        for solution_number in range(len(solutions)):
-            if scores[solution_number] != -1 and scores[solution_number] < best_score:
-                best_score = scores[solution_number]
-                best_number = solution_number
-                scores[solution_number]=-1
-        best_solutions.append((solutions[best_number], best_score))
+    n = len(scores)
+    for i in range(n - 1):
+        for j in range(0, n - i - 1):
+            if scores[j] > scores[j + 1]:
+                scores[j], scores[j + 1] = scores[j + 1], scores[j]
+                solutions[j], solutions[j + 1] = solutions[j + 1], solutions[j]
 
+    for i in range(amount):
+        best_solutions.append((solutions[i], scores[i]))
     return best_solutions
 
 def calculate_solution_score(solution: [int], costs: dict, flows: dict) -> float:
