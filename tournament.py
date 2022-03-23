@@ -33,7 +33,8 @@ def battle(solutions: list, scores: list):
     best = scores[0]
     best_position = 0
     for i in range(len(solutions)):
-        if scores[i] > best:
+        if scores[i] < best:
             best = scores[i]
             best_position = i
     return solutions[best_position], scores[best_position]
+

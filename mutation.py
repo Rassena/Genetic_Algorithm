@@ -1,7 +1,7 @@
 import copy
 import random
 
-MUTATION_PROBABILITY = 3
+MUTATION_PROBABILITY = 30
 
 
 def mutation(solutions: list):

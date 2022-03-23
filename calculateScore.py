@@ -31,6 +31,7 @@ def get_best_solutions(solutions: [], scores: [], amount: int = 1) -> [([int], f
     :return: list of tuples (solution, score)
     """
     best_solutions = []
+    best_scores = []
 
     n = len(scores)
     for i in range(n - 1):
@@ -40,8 +41,9 @@ def get_best_solutions(solutions: [], scores: [], amount: int = 1) -> [([int], f
                 solutions[j], solutions[j + 1] = solutions[j + 1], solutions[j]
 
     for i in range(amount):
-        best_solutions.append((solutions[i], scores[i]))
-    return best_solutions
+        best_solutions.append(solutions[i])
+        best_scores.append(scores[i])
+    return best_solutions,best_scores
 
 def calculate_solution_score(solution: [int], costs: dict, flows: dict) -> float:
     """
