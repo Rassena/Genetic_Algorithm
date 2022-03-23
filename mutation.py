@@ -1,7 +1,6 @@
 import copy
 import random
-
-MUTATION_PROBABILITY = 30
+import constants as constants
 
 
 def mutation(solutions: list):
@@ -9,14 +8,14 @@ def mutation(solutions: list):
     for solution in solutions:
         rand = random.random() * 100
         solution = copy.deepcopy(solution)
-        if rand < MUTATION_PROBABILITY:
-            print("Mutation:")
-            print(solution)
+        if rand < constants.MUTATION_PROBABILITY:
+            #print("Mutation:")
+            #print(solution)
             to_swap = random.sample(range(len(solution)), 2)
             temp = solution[to_swap[1]]
             solution[to_swap[1]] = solution[to_swap[0]]
             solution[to_swap[0]] = temp
-            print(solution)
+            #print(solution)
         mutated_solutions.append(solution)
     return mutated_solutions
 

@@ -3,10 +3,7 @@ import random
 
 from generateRandomSolutions import is_correct_solution
 from roulette import roulette_one
-
-CROSSOVER_PROBABILITY = 40
-
-
+import constants as constants
 def crossover(solutions: list, scores: list, grid_height: int, grid_width: int):
     """
     take random number of machines put it to other
@@ -20,7 +17,7 @@ def crossover(solutions: list, scores: list, grid_height: int, grid_width: int):
         parent_01 = solutions[approach]
         parent_02, _ = roulette_one(solutions, scores)
         child_01 = copy.deepcopy(parent_01)
-        if random.randint(0, 1) == 1:
+        if random.random()*100 < constants.CROSSOVER_PROBABILITY:
             gens = random.randint(0, len(parent_02))
             random.sample(solutions, gens)
             for gen in range(gens):
@@ -29,9 +26,9 @@ def crossover(solutions: list, scores: list, grid_height: int, grid_width: int):
                 child_01 = fix_solution(child_01, grid_height, grid_width)
                 #print("New Child: ", child_01)
             new_population.append(child_01)
-            print("Parent 1: ", parent_01)
-            print("Parent 2: ", parent_02)
-            print("child: ", child_01)
+            #print("Parent 1: ", parent_01)
+            #print("Parent 2: ", parent_02)
+            #print("child: ", child_01)
         else:
             new_population.append(parent_01)
     return new_population

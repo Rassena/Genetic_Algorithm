@@ -1,21 +1,21 @@
-from ReadData import read_from_json_file, EASY_COST_PATH, EASY_FLOW_PATH, FLAT_FLOW_PATH, FLAT_COST_PATH, \
-    HARD_FLOW_PATH, HARD_COST_PATH
+from ReadData import read_from_json_file
 from calculateScore import calculate_solutions_score, get_best_solutions
 from crossover import crossover
 from generateRandomSolutions import generate_random_solutions
 from mutation import mutation
 from roulette import roulette, roulette_one
 from tournament import tournament
+import constants as constants
 
-if __name__ == '__main__':
+
+def test():
     # [cost_path,flow_path, number_of_machines,grid_height,grid_width,solutions_to_generate,number_of_best_solutions]
-    easy_problem = [EASY_COST_PATH, EASY_FLOW_PATH, 9, 3, 3, 10, 1]
-    flat_problem = [FLAT_COST_PATH, FLAT_FLOW_PATH, 12, 1, 12, 100, 1]
-    hard_problem = [HARD_COST_PATH, HARD_FLOW_PATH, 24, 5, 6, 100, 1]
+    easy_problem = [constants.EASY_COST_PATH, constants.EASY_FLOW_PATH, 9, 3, 3, 10, 1]
+    flat_problem = [constants.FLAT_COST_PATH, constants.FLAT_FLOW_PATH, 12, 1, 12, 100, 1]
+    hard_problem = [constants.HARD_COST_PATH, constants.HARD_FLOW_PATH, 24, 5, 6, 100, 1]
     tournament_size = 4
 
     problems = [easy_problem, flat_problem, hard_problem]
-    problems = [easy_problem]
 
     for problem in problems:
 
@@ -49,16 +49,14 @@ if __name__ == '__main__':
 
         print("\n\tRoulette Result\n")
         # roulette
-        for i in range(10):
-            drawn_solution, drawn_score = roulette_one(random_solutions, scores)
-            # print(i, drawn_solution)
-            print(i, drawn_score)
+        drawn_solution, drawn_score = roulette_one(random_solutions, scores)
+        print(drawn_solution)
+        print(drawn_score)
 
         print("\n\tTournament Result\n")
-        for i in range(10):
-            tournament_solution, tournament_score = tournament(random_solutions, scores, tournament_size)
-            # print(i, tournament_solution)
-            print(i, tournament_score)
+        tournament_solution, tournament_score = tournament(random_solutions, scores, tournament_size)
+        print(tournament_solution)
+        print(tournament_score)
 
         print("\n\tMutation Result\n")
         mutation_solution = mutation(random_solutions)
@@ -68,3 +66,8 @@ if __name__ == '__main__':
 
         print("\n\tcrossover Result\n")
         crossover_solution = crossover(random_solutions, scores, grid_height, grid_width)
+
+
+if __name__ == "__main__":
+    #test()
+    pass

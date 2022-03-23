@@ -1,8 +1,4 @@
-SOURCE = 'source'
-DEST = 'dest'
-COST = 'cost'
-AMOUNT = 'amount'
-
+import constants as constans
 
 def calculate_solutions_score(solutions: [[int]], costs: dict, flows: dict) -> [float]:
     """
@@ -59,14 +55,14 @@ def calculate_solution_score(solution: [int], costs: dict, flows: dict) -> float
 
     for flow in flows:
         # print(flow.get(SOURCE), flow.get(DEST), flow.get(AMOUNT))
-        source = flow.get(SOURCE)
-        destination = flow.get(DEST)
+        source = flow.get(constans.SOURCE)
+        destination = flow.get(constans.DEST)
         for cost in costs:
             pass
             # print(cost.get(SOURCE), cost.get(DEST), cost.get(COST))
-            if source == cost.get(SOURCE) and destination == cost.get(DEST):
+            if source == cost.get(constans.SOURCE) and destination == cost.get(constans.DEST):
                 distance = abs(solution[source][0] - solution[destination][0]) + abs(
                     solution[source][1] - solution[destination][1])
-                score += distance * cost.get(COST) * flow.get(AMOUNT)
+                score += distance * cost.get(constans.COST) * flow.get(constans.AMOUNT)
 
     return score
