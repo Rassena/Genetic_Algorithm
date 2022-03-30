@@ -1,10 +1,10 @@
 import copy
 import random
 
-NEXT_STAGE_PERCENTAGE = 0.75
+import constants
 
 
-def tournament(solutions: list, scores: list, size=4):
+def tournament(solutions: list, scores: list, size=constants.TOURNAMENT_SIZE):
     """
     :param solutions:
     :param scores:
@@ -37,4 +37,3 @@ def battle(solutions: list, scores: list):
             best = scores[i]
             best_position = i
     return solutions[best_position], scores[best_position]
-

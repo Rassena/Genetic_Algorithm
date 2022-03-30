@@ -4,6 +4,9 @@ import random
 from generateRandomSolutions import is_correct_solution
 from roulette import roulette_one
 import constants as constants
+from tournament import tournament
+
+
 def crossover(solutions: list, scores: list, grid_height: int, grid_width: int):
     """
     take random number of machines put it to other
@@ -15,7 +18,11 @@ def crossover(solutions: list, scores: list, grid_height: int, grid_width: int):
     new_population = []
     for approach in range(len(solutions)):
         parent_01 = solutions[approach]
-        parent_02, _ = roulette_one(solutions, scores)
+        parent_02 = None
+        if constants.SELECTION_TYPE == 0:
+            parent_02, _ = roulette_one(solutions, scores)
+        else:
+            parent_02, _ = tournament(solutions, scores, constants.TOURNAMENT_SIZE)
         child_01 = copy.deepcopy(parent_01)
         if random.random()*100 < constants.CROSSOVER_PROBABILITY:
             gens = random.randint(0, len(parent_02))

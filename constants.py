@@ -16,5 +16,9 @@ AMOUNT = 'amount'
 CROSSOVER_PROBABILITY = 40
 
 # mutation
-MUTATION_PROBABILITY = 30
+MUTATION_PROBABILITY = 3
+
+# touramment
+TOURNAMENT_SIZE = 4
+SELECTION_TYPE = 0  # 0 -tournament 1 - roulettte
 

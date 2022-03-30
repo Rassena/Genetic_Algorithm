@@ -1,5 +1,6 @@
 import constants as constans
 
+
 def calculate_solutions_score(solutions: [[int]], costs: dict, flows: dict) -> [float]:
     """
     Calculate scores for every solution in list
@@ -39,7 +40,33 @@ def get_best_solutions(solutions: [], scores: [], amount: int = 1) -> [([int], f
     for i in range(amount):
         best_solutions.append(solutions[i])
         best_scores.append(scores[i])
-    return best_solutions,best_scores
+    return best_solutions, best_scores
+
+
+def get_worst_solutions(solutions: [], scores: [], amount: int = 1) -> [([int], float)]:
+    """
+    Get list of worst :amount: solutions with their score
+
+    :param solutions:
+    :param scores:
+    :param amount:
+    :return: list of tuples (solution, score)
+    """
+    worst_solutions = []
+    worst_scores = []
+
+    n = len(scores)
+    for i in range(n - 1):
+        for j in range(0, n - i - 1):
+            if scores[j] < scores[j + 1]:
+                scores[j], scores[j + 1] = scores[j + 1], scores[j]
+                solutions[j], solutions[j + 1] = solutions[j + 1], solutions[j]
+
+    for i in range(amount):
+        worst_solutions.append(solutions[i])
+        worst_scores.append(scores[i])
+    return worst_solutions, worst_scores
+
 
 def calculate_solution_score(solution: [int], costs: dict, flows: dict) -> float:
     """
